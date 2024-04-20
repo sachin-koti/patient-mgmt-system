@@ -1,0 +1,215 @@
+<div class="container">
+    <div class="row">
+        <div class="input-group align-text-bottom">
+            <div class="input-group-prepend">
+                <span class="input-group-text border-0 p-0 me-3" id="search-icon">
+                    <i class="bi bi-search"></i>
+                </span>
+            </div>
+            <p class="h5 mb-0">Search your patients</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row mt-2">
+            <ul class="nav nav-tabs border-0" id="basicTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active border-0 shadow rounded" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic-tab-pane" type="button" role="tab" aria-controls="basic-tab-pane" aria-selected="true">Basic</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link border-0 shadow rounded" id="advanced-tab" data-bs-toggle="tab" data-bs-target="#advanced-tab-pane" type="button" role="tab" aria-controls="advanced-tab-pane" aria-selected="false">Advanced</button>
+                </li>    
+            </ul>
+            <div class="tab-content p-0 shadow rounded" id="basicTabContent">
+                <div class="tab-pane fade show active" id="basic-tab-pane" role="tabpanel" aria-labelledby="basic-tab" tabindex="0">                    
+                    <div class="card border-0">
+                        <div class="card-title">
+                            <p class="text-muted ps-3 pt-3 mb-2">Patient Info</p>
+                        </div>
+                        
+                        <div class="card-body pt-0">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4">
+                                    <ul class="list-group">
+                                        <p class="fw-bold mb-1">First Name</p>
+                                        <input type="text" class="form-control" aria-label="First name">
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                    <ul class="list-group">
+                                        <p class="fw-bold  mb-1">Last Name</p>
+                                        <input type="text" class="form-control" aria-label="Last name">
+                                    </ul>
+                                </div>
+                                <div class="col-md-3">
+                                    <ul class="list-group">
+                                        <p class="fw-bold mb-1 text-nowrap">Date of Birth</p>
+                                        <input type="date" class="form-control" aria-label="Date of Birth">
+                                    </ul>
+                                </div>
+                            </div>                            
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="card-title">
+                                    <p class="text-muted pt-0 mb-0">Appointment Range</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <ul class="list-group">
+                                        <p class="fw-bold mb-1 text-nowrap">Start Date</p>
+                                        <input type="date" class="form-control" aria-label="Start Date">
+                                    </ul>
+                                </div>
+                                <div class="col-md-3">
+                                    <ul class="list-group">
+                                        <p class="fw-bold mb-1 text-nowrap">End Date</p>
+                                        <input type="date" class="form-control" aria-label="End Date">
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="d-md-flex justify-content-md-end">
+                                    <input class="btn ps-5 pe-5" id="search_button" type="button" value="Search">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>                    
+            </div>
+            <div class="tab-pane fade shadow rounded" id="advanced-tab-pane" role="tabpanel" aria-labelledby="advanced-tab" tabindex="0">
+                Advanced Search
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------------Patients list section-------------------- -->
+    <div class="container p-0">
+          <mat-tab-group preserveContent>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                   <i class="bi bi-person-lines-fill pe-2"></i> Today's patients
+                </ng-template>
+                <div class="col-sm-12">
+                    <div class="container mt-2 border border-5 border-primary">                       
+                        @for (patient of patients; track $index) {
+                        <div class="row mb-3">
+                            <div class="col-md-12 ps-0 pe-0">
+                                <div class="card">
+                                    <div class="card-body ps-0 pe-0 pt-1 pb-1 border-top-0 border-start-0 border-end-0 border-2 border-primary shadow" style="border-style:dashed">                                                                           
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="d-flex justify-content-start align-items-center">
+                                                    <span>
+                                                        <img class="ps-1 pb-1" [src]="patient['profilePic']" style="height:40px; width:40px">
+                                                    </span>
+                                                    <span>                                                
+                                                        <h5 class="card-title ps-2 text-nowrap">{{ patient['Name'] }}</h5>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col"></div>
+                                            <div class="col">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <p class="pt-1"><span class="fw-medium pe-2 text-nowrap">Next Appointment</span> <span class="text-nowrap">Today 9:00 am</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="col d-flex justify-content-end align-items-center"><i class="bi bi-chevron-right"></i></div>
+                                        </div>                                                                                                              
+                                        
+                                        <hr class="m-0">
+
+                                        <!-- <div class="row">
+                                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">DOB:</p>{{patient["DOB"]}}</li>
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">Sex:</p>{{patient["Sex"]}}</li>
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">Residence:</p> {{patient["Residence"]}}</li>
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">MRN:</p>{{patient["MRN"]}} </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">ID Number:</p>{{patient["IDNumber"]}} </li>
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">Last 4 digits of SSN:</p>{{patient["Last4DigitsSSN"]}} </li>
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">Phone Number:</p>{{patient["PhoneNumber"]}} </li>
+                                                    <li class="list-group-item border-0 d-flex justify-content-between text-break"><p class="fw-medium">Email Address:</p> {{patient["EmailAddress"]}}</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">Hospital:</p>{{patient["Hospital"]}} </li>
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">Dept.:</p>{{patient["Dept"]}} </li>
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">Physician:</p> {{patient["Physician"]}}</li>
+                                                    <li class="list-group-item border-0 d-flex justify-content-between"><p class="fw-medium">Conditions:</p>{{patient["Conditions"]}} </li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+
+                                        <!-- ---------trial ----------->
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6 col-lg-4 border-bottom-md">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item border-0 d-flex flex-wrap"><p class="fw-medium" style="min-width: 100px;">DOB:</p><p class="fw-light">{{patient["DOB"]}}</p></li>
+                                                    <li class="list-group-item border-0 d-flex flex-wrap"><p class="fw-medium" style="min-width: 100px;">Sex:</p><p class="fw-light">{{patient["Sex"]}}</p></li>
+                                                    <li class="list-group-item border-0 d-flex flex-wrap"><p class="fw-medium" style="min-width: 100px;">Residence:</p><p class="fw-light">{{patient["Residence"]}}</p></li>
+                                                    <li class="list-group-item border-0 d-flex flex-wrap"><p class="fw-medium" style="min-width: 100px;">MRN:</p><p class="fw-light">{{patient["MRN"]}} </p></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-4 border-bottom-md">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item border-0 d-flex flex-wrap"><p class="fw-medium" style="min-width: 150px;">ID Number:</p><p class="fw-light">{{patient["IDNumber"]}} </p></li>
+                                                    <li class="list-group-item border-0 d-flex flex-wrap"><p class="fw-medium" style="min-width: 150px;">Last 4 digits of SSN:</p><p class="fw-light">{{patient["Last4DigitsSSN"]}} </p></li>
+                                                    <li class="list-group-item border-0 d-flex flex-wrap"><p class="fw-medium" style="min-width: 150px;">Phone Number:</p><p class="fw-light">{{patient["PhoneNumber"]}} </p></li>
+                                                    <li class="list-group-item border-0 d-flex text-break"><p class="fw-medium" style="min-width: 150px;">Email Address:</p><p class="fw-light"> {{patient["EmailAddress"]}}</p></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item border-0 d-flex text-break"><p class="fw-medium" style="min-width: 90px;">Hospital:</p><p class="fw-light">{{patient["Hospital"]}}</p> </li>
+                                                    <li class="list-group-item border-0 d-flex text-break"><p class="fw-medium" style="min-width: 90px;">Dept.:</p><p class="fw-light">{{patient["Dept"]}} </p></li>
+                                                    <li class="list-group-item border-0 d-flex flex-wrap"><p class="fw-medium" style="min-width: 90px;">Physician:</p><p class="fw-light"> {{patient["Physician"]}}</p></li>
+                                                    <li class="list-group-item border-0 d-flex text-break"><p class="fw-medium" style="min-width: 90px;">Conditions:</p><p class="fw-light">{{patient["Conditions"]}} </p></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- -------------trial ends ------------>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }                                            
+                    </div>
+                    
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <i class="bi bi-list pe-2"></i> Search Results
+                </ng-template>
+                <div class="col-sm-12">
+                    Second Tab Content
+                </div>
+            </mat-tab>
+            <mat-tab disabled>
+            </mat-tab>
+            <mat-tab disabled>
+            </mat-tab>
+            <mat-tab disabled>
+            </mat-tab>
+            <mat-tab disabled>
+            </mat-tab>
+        </mat-tab-group>
+        
+</div>
+
+</div>
+

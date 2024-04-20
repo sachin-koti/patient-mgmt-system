@@ -1,0 +1,13 @@
+.nav-tabs .nav-item .nav-link {
+    color: #686161; 
+}
+
+.nav-tabs .nav-item .nav-link.active {
+    color: #000000;
+}
+
+
+#search_button{
+    color:white;
+    background-color: #5b8a96;
+}
